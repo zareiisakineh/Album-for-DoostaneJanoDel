@@ -7,12 +7,15 @@
     <title>Album</title>
 
     <link rel="stylesheet" href="style.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 
 <body>
+  <header>
+    <h1> دوستان جان و دل</h1>
+  </header>
 
     <main>
          <div class="gallery">
@@ -40,7 +43,7 @@
            <a href="bilder/8.jpg" class="glightbox" data-gallery="album">
             <img src="bilder/8.jpg" alt="Bilde 8">
           </a>
-           <a href="bilder/8.jpg" class="glightbox" data-gallery="album">
+           <a href="bilder/9.jpg" class="glightbox" data-gallery="album">
             <img src="bilder/9.jpg" alt="Bilde 9">
           </a>
            <a href="bilder/10.jpg" class="glightbox" data-gallery="album">
@@ -524,11 +527,11 @@ Sammen gjør de at GLightbox fungerer: CSS bestemmer **utseendet**, mens JavaScr
 
  1. const lightbox =
 const lightbox =
-const betyr at du lager en konstant variabel.
-Variabelen heter lightbox.
+const betyr at du lager en konstant variabel. Variabelen heter lightbox.
 Den lagrer GLightbox-objektet som opprettes.
 
-Du trenger egentlig ikke å bruke variabelen senere, men det er vanlig å lagre den dersom du senere vil endre innstillinger eller styre galleriet med JavaScript.
+Du trenger egentlig ikke å bruke variabelen senere, men det er vanlig å lagre den dersom du senere vil 
+endre innstillinger eller styre galleriet med JavaScript.
 
 2. GLightbox(...)
 GLightbox({
@@ -583,8 +586,8 @@ og galleriet får funksjoner som piler, tastaturnavigasjon og sveiping.
 
 kan jeg bruke glightbox til videoer også?
 
-Ja! En av fordelene med GLightbox er at det støtter både bilder, videoer og iframes. Du kan derfor ha et album 
-som inneholder både bilder og videoer.
+Ja! En av fordelene med GLightbox er at det støtter både bilder, videoer og 
+iframes. Du kan derfor ha et album som inneholder både bilder og videoer.
 
 1. Lokal video (MP4)
 
