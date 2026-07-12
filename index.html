@@ -388,7 +388,6 @@
             <img src="bilder/Afi.jpg" alt="Bilde Afi">
           </a>
           
-
     </div>
     </main>
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
@@ -402,5 +401,253 @@ const lightbox = GLightbox({
     closeButton: true
 });
 </script>
+
 </body>
 </html>
+<!-- javascript-forklaring:
+ koble siden til bibliotek som inneholder koden for å lage galleri:
+
+ <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js">
+ </script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+
+ Disse to linjene **henter inn GLightbox-biblioteket** slik at du kan bruke det på nettsiden. 
+ Den ene henter JavaScript-koden, den andre henter CSS-stilen.
+---
+## 1. JavaScript
+```html
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+```
+La oss dele den opp:
+### `<script>`
+Forteller nettleseren:
+> "Nå skal jeg laste inn eller kjøre JavaScript."
+---
+### `src` står for **source** (kilde). Det betyr:
+> "JavaScript-filen ligger på denne adressen."
+I stedet for å lagre filen i prosjektet ditt, hentes den fra Internett.
+---
+### `https://`
+Dette er nettadressen til filen.
+### `cdn.jsdelivr.net`
+Dette er en **CDN (Content Delivery Network)**. En CDN er en server som lagrer populære biblioteker slik at 
+du slipper å laste dem ned selv.
+I stedet for
+```text
+prosjekt/
+    glightbox.min.js
+```
+kan du bare skrive adressen til filen.
+---
+### `glightbox.min.js`
+Dette er selve JavaScript-biblioteket. Filen inneholder all koden som gjør at
+* bildet åpnes som et vindu
+* piler vises
+* tastaturet fungerer
+* sveiping fungerer på mobil
+* animasjoner vises
+---
+## 2. CSS
+```html
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+```
+Denne linjen laster inn stilen til GLightbox.
+---
+### `<link>`
+Forteller nettleseren:
+> "Koble denne filen til nettsiden."
+---
+### `rel="stylesheet"`
+`rel` betyr **relationship** (forhold). Her sier du:
+> "Denne filen er et stilark (CSS)."
+---
+### `href`
+```html
+href="..."
+```
+`href` står for **Hypertext Reference**. Det er adressen til CSS-filen.
+---
+### `glightbox.min.css`
+Denne filen bestemmer hvordan lightboxen ser ut.
+Den lager blant annet:
+* mørk bakgrunn
+* overgangs-animasjoner
+* piler
+* lukkeknapp (×)
+* plassering av bildet
+* skrifttype på bildetekst
+
+---
+
+## Hva betyr `.min`?
+Begge filene heter
+```text
+glightbox.min.js
+glightbox.min.css
+```
+`.min` betyr **minified**. Da er filene komprimert ved å fjerne:
+* mellomrom
+* linjeskift
+* kommentarer
+Det gjør filene mindre og raskere å laste ned.
+For eksempel:
+Vanlig JavaScript:
+
+```javascript
+function hello() {
+    console.log("Hei");
+}
+```
+Minifisert:
+```javascript
+function hello(){console.log("Hei")}
+```
+Funksjonen er den samme, men filen tar mindre plass.
+---
+## Hvorfor trenger du begge?
+
+Hvis du fjerner **CSS-linjen**, vil funksjonaliteten fortsatt virke, men galleriet vil se feil ut eller mangle styling.
+
+Hvis du fjerner **JavaScript-linjen**, vil bildene bare åpnes som vanlige bildefiler, uten lightbox, piler eller navigasjon.
+
+Begge linjene må derfor være med:
+
+```html
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+```
+og
+```html
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+```
+Sammen gjør de at GLightbox fungerer: CSS bestemmer **utseendet**, mens JavaScript står for **oppførselen og funksjonene**.
+
+ 1. const lightbox =
+const lightbox =
+const betyr at du lager en konstant variabel.
+Variabelen heter lightbox.
+Den lagrer GLightbox-objektet som opprettes.
+
+Du trenger egentlig ikke å bruke variabelen senere, men det er vanlig å lagre den dersom du senere vil endre innstillinger eller styre galleriet med JavaScript.
+
+2. GLightbox(...)
+GLightbox({
+Dette er en funksjon fra GLightbox-biblioteket. Når siden lastes, oppretter den et bildegalleri.
+Den leter etter alle bildene som skal åpnes i lightbox.
+3. selector
+selector: '.glightbox',
+Dette forteller GLightbox hvilke elementer den skal bruke.
+Punktum (.) betyr CSS-klasse. Den finner derfor alle lenker som har
+class="glightbox"
+For eksempel:
+<a href="bilder/1.jpg" class="glightbox" data-gallery="album">
+Disse blir gjort klikkbare.
+4. loop
+loop: true,
+true betyr på. Når brukeren kommer til siste bilde, hopper galleriet tilbake til det første.
+Hvis du skriver
+loop: false
+stopper galleriet ved siste bilde.
+5. touchNavigation
+touchNavigation: true,
+Aktiverer sveiping på mobil og nettbrett.
+Da kan brukeren dra fingeren til høyre eller venstre.
+6. keyboardNavigation
+keyboardNavigation: true,
+Lar brukeren bruke tastaturet.
+For eksempel:
+← forrige bilde
+→ neste bilde
+Esc lukker bildet
+7. closeButton
+closeButton: true
+Viser et kryss (×) øverst i bildet.
+
+Hvis du setter closeButton: false
+forsvinner krysset.
+Til slutt
+});
+Avslutter objektet og funksjonskallet.
+Oppsummert: Koden din betyr i praksis:
+«Finn alle elementene med klassen glightbox, gjør dem om til et bildegalleri, la brukeren bla 
+mellom bildene, sveipe på mobil, bruke tastaturet og vise en lukkeknapp.»
+Hvorfor er denne koden nødvendig?
+HTML-en din viser bare bildene:
+<a href="bilder/1.jpg" class="glightbox">
+    <img src="bilder/1.jpg">
+</a>
+Uten JavaScript ville et klikk bare åpne bildefilen i nettleseren. Det er JavaScript-koden som gjør at:
+bildet åpnes som et overlegg (lightbox),
+brukeren kan bla mellom bildene,
+og galleriet får funksjoner som piler, tastaturnavigasjon og sveiping.
+
+kan jeg bruke glightbox til videoer også?
+
+Ja! En av fordelene med GLightbox er at det støtter både bilder, videoer og iframes. Du kan derfor ha et album 
+som inneholder både bilder og videoer.
+
+1. Lokal video (MP4)
+
+Hvis du har en video i prosjektmappen, for eksempel:
+
+Album-for-DoostaneJanoDel/
+│── index.html
+└── videoer/
+    └── ferie.mp4
+
+kan du skrive:
+
+<a href="videoer/ferie.mp4"
+   class="glightbox"
+   data-gallery="album">
+    <img src="bilder/video-forhandsvisning.jpg" alt="Se video">
+</a>
+
+Når brukeren klikker på bildet, åpnes videoen i GLightbox.
+
+2. YouTube-video
+Du kan også vise en YouTube-video:
+
+<a href="https://www.youtube.com/watch?v=VIDEO_ID"
+   class="glightbox">
+    Se video
+</a>
+
+Når brukeren klikker, spilles YouTube-videoen direkte i et popup-vindu.
+
+3. Vimeo-video
+
+På samme måte:
+
+<a href="https://vimeo.com/123456789"
+   class="glightbox">
+    Se Vimeo-video
+</a>
+4. Blande bilder og videoer
+
+Du kan ha ett og samme galleri:
+
+<a href="bilder/1.jpg" class="glightbox" data-gallery="album">
+    <img src="bilder/1.jpg" alt="Bilde 1">
+</a>
+
+<a href="videoer/ferie.mp4" class="glightbox" data-gallery="album">
+    <img src="bilder/videoikon.jpg" alt="Video">
+</a>
+
+<a href="bilder/2.jpg" class="glightbox" data-gallery="album">
+    <img src="bilder/2.jpg" alt="Bilde 2">
+</a>
+
+Da kan brukeren bla videre fra et bilde til en video og tilbake til neste bilde.
+
+Passer dette til prosjektet ditt?
+
+Siden du lager et album, kan du for eksempel:
+
+vise et bilde av en konsert eller et arrangement,
+og la brukeren klikke for å se en tilhørende video,
+før de blar videre til neste bilde.
+
+Det gir en mer interaktiv opplevelse enn et galleri med bare bilder.
+-->
