@@ -13,6 +13,11 @@ h1 {
     color: white;
     margin: 0;
 }
+@media screen and (max-width: 760px){
+    h1{
+        font-size: 2rem;
+    }
+}
 
 .gallery{
     width:90%;
